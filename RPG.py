@@ -65,7 +65,7 @@ def deadRoom():
         print("Options: right/left/backward")
         userInput = input()
         if userInput == "right":
-            print("Multiple ghoul-like creatures start emerging as you enter the room. You are murdered.")
+            print("As soon as you enter the room, the door behind you closes. You hear growling, and see ghoul-like creatures slowly rising up. They murder you.")
             print("Would you like to quit, or retry?")
             print("Options: quit/retry")
             userInput = input()
@@ -110,7 +110,7 @@ def bagScene():
             showTallFigure()
         else: print("Please enter a valid option.")
 
-#Om spilleren går backward fra dette rommet, går de tilbake til intro scenen.
+#Om spilleren går backward fra dette rommet, går de tilbake til intro-scenen.
 #Om de går left eller right så spilles en ny scene av.
 def showTallFigure():
     directions = ["right","backward"]
@@ -129,8 +129,8 @@ def showTallFigure():
             print("Please enter a valid option.")
 
 
-#introScene() funksjonen. Starter eventyret og gir spilleren et valg om hvor de vil gå videre. Avhengig av hva spilleren velger, så starter en annen scene.
-#For eksempel. hvis brukeren skriver "left", så begynner showShadowFigure() scenen. 
+#startScene() funksjonen. Starter eventyret og gir spilleren et valg om hvor de vil gå videre. Avhengig av hva spilleren velger, så starter en annen scene.
+#For eksempel. hvis brukeren skriver "left", så begynner showTallFigure() scenen. 
 def startScene():
     directions = ["left","right","forward"]
     print("You are surrounded by trees. Everywhere you look you see trees. You could go any direction. Where would you like to go?")
