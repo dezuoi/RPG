@@ -1,5 +1,34 @@
+import subprocess
+
+# Installer mysql-connector-python pakken
+subprocess.call(['pip', 'install', 'mysql-connector-python'])
+
+import mysql.connector
+
+try:
+    # Etablere forbindelsen
+    cnx = mysql.connector.connect(
+        user='root',
+        password='',
+        host='localhost',
+        database='spill'
+    )
+
+    # Utfør database kommandoer
+    # Hent data, osv
+
+except mysql.connector.Error as err:
+    print("Error while connecting to MySQL:", err)
+
+finally:
+    if 'cnx' in locals():
+        # Lukke tilkoblingen
+        cnx.close()
+
+
 #Global variabel for våpen. Den vil enten være true eller false, avhengig av om spilleren har funnet den ennå eller ikke. Våpenet kan endre utfallet i noen av rommene.
 weapon = False
+whale = False
 
 
 #Om spilleren har funnet våpenet, så kan de bruke det til å drepe monsteret de møter på her og rømme.
@@ -65,7 +94,7 @@ def deadRoom():
         print("Options: right/left/backward")
         userInput = input()
         if userInput == "right":
-            print("As soon as you enter the room, the door behind you closes. You hear growling, and see ghoul-like creatures slowly rising up. They murder you.")
+            print("Multiple ghoul-like creatures start emerging as you enter the room. You are murdered.")
             print("Would you like to quit, or retry?")
             print("Options: quit/retry")
             userInput = input()
@@ -110,7 +139,7 @@ def bagScene():
             showTallFigure()
         else: print("Please enter a valid option.")
 
-#Om spilleren går backward fra dette rommet, går de tilbake til intro-scenen.
+#Om spilleren går backward fra dette rommet, går de tilbake til intro scenen.
 #Om de går left eller right så spilles en ny scene av.
 def showTallFigure():
     directions = ["right","backward"]
@@ -127,10 +156,11 @@ def showTallFigure():
             startScene()
         else:
             print("Please enter a valid option.")
+            
 
 
-#startScene() funksjonen. Starter eventyret og gir spilleren et valg om hvor de vil gå videre. Avhengig av hva spilleren velger, så starter en annen scene.
-#For eksempel. hvis brukeren skriver "left", så begynner showTallFigure() scenen. 
+#introScene() funksjonen. Starter eventyret og gir spilleren et valg om hvor de vil gå videre. Avhengig av hva spilleren velger, så starter en annen scene.
+#For eksempel. hvis brukeren skriver "left", så begynner showShadowFigure() scenen. 
 def startScene():
     directions = ["left","right","forward"]
     print("You are surrounded by trees. Everywhere you look you see trees. You could go any direction. Where would you like to go?")
